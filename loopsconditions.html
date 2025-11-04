@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Loops and Conditions Showcase | GROUP 2 | IT-ELECT</title>
+
+<!-- ===== CSS DESIGN ===== -->
+<style>
+  :root {
+    --blue: #007bff;
+    --green: #28a745;
+    --orange: #fd7e14;
+    --red: #dc3545;
+    --gray: #f8f9fa;
+  }
+
+  body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: #333;
+  }
+
+  header {
+    background: var(--blue);
+    color: white;
+    padding: 20px 10px 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid white;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  /* === Seamless Scrolling Text / CSS Marquee === */
+  .scrolling-container {
+    overflow: hidden;
+    background: #111;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    box-sizing: border-box;
+    padding: 8px 0;
+    position: relative;
+  }
+
+  .scrolling-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 15s linear infinite;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #fff, 0 0 12px #00f, 0 0 18px #0ff;
+  }
+
+  .scrolling-text span {
+    display: inline-block;
+    margin-right: 50px; /* spacing between repeated text */
+  }
+
+  @keyframes scroll-left {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); } /* move half, so repeat appears seamless */
+  }
+
+  .it-elect {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #0ff, 0 0 12px #0ff, 0 0 16px #0ff;
+    animation: glow 2s linear infinite alternate;
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; }
+    25% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
+    50% { text-shadow: 0 0 15px #0ff, 0 0 25px #0ff, 0 0 30px #0ff; }
+    75% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 25px #0ff; }
+    100% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff; }
+  }
+
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    padding: 30px 10px;
+  }
+
+  section {
+    background: white;
+    width: 330px;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease;
+  }
+
+  section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  }
+
+  h2 {
+    color: var(--blue);
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .label {
+    background: var(--gray);
+    border-left: 5px solid var(--blue);
+    padding: 6px 10px;
+    margin-bottom: 12px;
+    text-align: left;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+  }
+
+  input, select {
+    padding: 8px;
+    font-size: 16px;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  button {
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: #0056b3;
+  }
+
+  .even { color: var(--blue); }
+  .odd { color: var(--green); }
+  .low { color: var(--green); }
+  .mid { color: var(--orange); }
+  .high { color: var(--red); }
+  .success { color: var(--green); font-weight: bold; }
+  .fail { color: var(--red); }
+
+  .output {
+    text-align: left;
+    margin-top: 15px;
+    background: var(--gray);
+    border-radius: 8px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  footer {
+    background: var(--blue);
+    color: white;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ===== HEADER WITH LOGO AND SCROLLING TEXT ===== -->
+<header>
+  <img src="c:\Users\DESKTOP\Pictures\c.png" alt="Logo" />
+  <h1>Loops and Conditions Showcase</h1>
+  <p>Created by <strong>GROUP 2 — IT-ELECT</strong> | HTML • CSS • JavaScript</p>
+
+  <div class="scrolling-container">
+    <div class="scrolling-text">
+      <span>Loops and Conditions Showcase | GROUP 2 — <span class="it-elect">IT-ELECT</span> |</span>
+      <span>Loops and Conditions Showcase | GROUP 2 — <span class="it-elect">IT-ELECT</span> |</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+  <!-- 1️⃣ FOR LOOP -->
+  <section>
+    <h2>1️⃣ For Loop (Multiplication Table)</h2>
+    <div class="label">🧠 Loop: <b>for</b> | Condition: <b>if / else</b></div>
+    <p>Displays a multiplication table and shows even/odd results.</p>
+    <input type="number" id="num1" placeholder="Enter number" />
+    <button onclick="showTable()">Show Table</button>
+    <div id="output1" class="output"></div>
+  </section>
+
+  <!-- 2️⃣ WHILE LOOP -->
+  <section>
+    <h2>2️⃣ While Loop (Countdown)</h2>
+    <div class="label">🧠 Loop: <b>while</b> | Condition: <b>if / else if / else</b></div>
+    <p>Counts down from a number and classifies each as low, medium, or high.</p>
+    <input type="number" id="num2" placeholder="Enter number" />
+    <button onclick="countDown()">Start Countdown</button>
+    <div id="output2" class="output"></div>
+  </section>
+
+  <!-- 3️⃣ DO...WHILE LOOP -->
+  <section>
+    <h2>3️⃣ Do...While Loop (Password Checker)</h2>
+    <div class="label">🧠 Loop: <b>do...while</b> | Condition: <b>if / else</b></div>
+    <p>Try to guess the correct password (Hint: <b>hello</b>).</p>
+    <input type="text" id="passwordInput" placeholder="Enter password" />
+    <button onclick="checkPassword()">Check Password</button>
+    <div id="output3" class="output"></div>
+  </section>
+
+  <!-- 4️⃣ FOREACH + SWITCH -->
+  <section>
+    <h2>4️⃣ forEach + Switch Example</h2>
+    <div class="label">🧠 Loop: <b>forEach</b> | Condition: <b>switch / case</b></div>
+    <p>Grades classification using switch conditions.</p>
+    <select id="gradeSelect" multiple size="5">
+      <option value="95">95</option>
+      <option value="82">82</option>
+      <option value="68">68</option>
+      <option value="54">54</option>
+      <option value="100">100</option>
+    </select>
+    <br />
+    <button onclick="checkGrades()">Classify Grades</button>
+    <div id="output4" class="output"></div>
+  </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2025 Loops & Conditions Showcase — GROUP 2 | IT-ELECT
+</footer>
+
+<!-- ===== JAVASCRIPT LOGIC ===== -->
+<script>
+  // --- FOR LOOP EXAMPLE ---
+  function showTable() {
+    const n = parseInt(document.getElementById("num1").value);
+    const output = document.getElementById("output1");
+    output.innerHTML = "";
+
+    if (isNaN(n) || n <= 0) {
+      output.innerHTML = "<p class='fail'>⚠️ Please enter a positive number.</p>";
+      return;
+    }
+
+    for (let i = 1; i <= 10; i++) {
+      const result = n * i;
+      const p = document.createElement("p");
+
+      if (result % 2 === 0) {
+        p.className = "even";
+        p.textContent = `${n} × ${i} = ${result} (Even)`;
+      } else {
+        p.className = "odd";
+        p.textContent = `${n} × ${i} = ${result} (Odd)`;
+      }
+
+      output.appendChild(p);
+    }
+  }
+
+  // --- WHILE LOOP EXAMPLE ---
+  function countDown() {
+    let n = parseInt(document.getElementById("num2").value);
+    const output = document.getElementById("output2");
+    output.innerHTML = "";
+
+    if (isNaN(n) || n <= 0) {
+      output.innerHTML = "<p class='fail'>⚠️ Enter a positive number.</p>";
+      return;
+    }
+
+    while (n > 0) {
+      const p = document.createElement("p");
+
+      if (n >= 10) {
+        p.className = "high";
+        p.textContent = `${n} - High Number`;
+      } else if (n >= 5) {
+        p.className = "mid";
+        p.textContent = `${n} - Medium Number`;
+      } else {
+        p.className = "low";
+        p.textContent = `${n} - Low Number`;
+      }
+
+      output.appendChild(p);
+      n--;
+    }
+  }
+
+  // --- DO...WHILE LOOP EXAMPLE ---
+  let attempts = 0;
+  const correctPassword = "hello";
+
+  function checkPassword() {
+    let userInput = document.getElementById("passwordInput").value;
+    let output = document.getElementById("output3");
+    output.innerHTML = "";
+
+    do {
+      attempts++;
+
+      if (userInput === correctPassword) {
+        output.innerHTML = `<p class='success'>✅ Correct! You guessed it in ${attempts} attempt(s).</p>`;
+        return;
+      } else {
+        output.innerHTML = `<p class='fail'>❌ Incorrect password! Try again.</p>`;
+        break;
+      }
+    } while (userInput !== correctPassword);
+  }
+
+  // --- FOREACH LOOP WITH SWITCH CONDITIONS ---
+  function checkGrades() {
+    const grades = Array.from(document.getElementById("gradeSelect").selectedOptions)
+                        .map(opt => parseInt(opt.value));
+    const output = document.getElementById("output4");
+    output.innerHTML = "";
+
+    if (grades.length === 0) {
+      output.innerHTML = "<p class='fail'>⚠️ Please select at least one grade.</p>";
+      return;
+    }
+
+    grades.forEach(grade => {
+      const p = document.createElement("p");
+      let remark = "";
+
+      switch (true) {
+        case (grade >= 90):
+          remark = "Excellent";
+          p.style.color = "green";
+          break;
+        case (grade >= 75):
+          remark = "Good";
+          p.style.color = "blue";
+          break;
+        case (grade >= 60):
+          remark = "Fair";
+          p.style.color = "orange";
+          break;
+        default:
+          remark = "Needs Improvement";
+          p.style.color = "red";
+      }
+
+      p.textContent = `Grade: ${grade} → ${remark}`;
+      output.appendChild(p);
+    });
+  }
+</script>
+</body>
+</html>
